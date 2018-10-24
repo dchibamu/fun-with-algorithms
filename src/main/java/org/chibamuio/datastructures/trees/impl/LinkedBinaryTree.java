@@ -101,9 +101,4 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     public Iterator<E> iterator() {
         return null;
     }
-
-    @Override
-    public Iterable<Position<E>> positions() {
-        return null;
-    }
 }
