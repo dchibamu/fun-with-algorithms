@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.chibamuio.datastructures.core.Position;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
@@ -37,11 +39,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return node.getLeft();
     }
 
-
     public Position<E> right(Position<E> p) throws IllegalArgumentException {
         Node<E> node = validate(p);
         return node.getRight();
     }
+
 
     public Position<E> addRoot(E e) throws IllegalArgumentException{
         if(!isEmpty())
@@ -79,10 +81,10 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
     private Node<E> validate(Position<E> p) throws IllegalArgumentException {
-        if(!(p instanceof Node))
+        if (!(p instanceof Node))
             throw new IllegalArgumentException("Invalid position");
-        Node<E> node = (Node<E>)p;
-        if(node.getParent() == null && root() != p)
+        Node<E> node = (Node<E>) p;
+        if (node.getParent() == null && root() != p)
             throw new IllegalArgumentException("p is no longer in the tree");
         return node;
     }
@@ -101,4 +103,6 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     public Iterator<E> iterator() {
         return null;
     }
+
+
 }

@@ -1,5 +1,6 @@
 package org.chibamuio.datastructures.trees.impl;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.chibamuio.datastructures.core.Position;
 import org.chibamuio.datastructures.trees.BinaryTree;
 import org.chibamuio.datastructures.utils.BinaryTreeUtils;
@@ -48,9 +49,8 @@ public class LinkedBinaryTreeSpec<E> {
         assertNull(leftChildOne.getElement(), () -> "Value should be null");
         assertNull(rightChildOne.getElement(), () -> "Value should be null");
     }
-
     @Test
-    public void shouldReturnTreeInPreOrderTraversal(){
+    public void shouldReturnTreePreOrderTraversal(){
         Character[] letters = {'A', 'B', 'C','D','E','F','G'};
         Character[] expectedPreorder = {'A', 'B', 'D', 'E', 'C', 'F', 'G'};
 
@@ -64,7 +64,7 @@ public class LinkedBinaryTreeSpec<E> {
         assertEquals(rootLeftChild.getElement(), letters[1], () -> "Left child to A should be B");
         assertEquals(rootRightChild.getElement(), letters[2], () -> "Right child to A should be C");
 
-        Iterable<Position<Character>> positions = binaryTree.positions();
+        Iterable<Position<Character>> positions = binaryTree.preOrderPositions();
         List<Position<Character>> target= new ArrayList<>();
         positions.forEach(target::add);
         Character[] traversalPattern = new Character[target.size()];
@@ -74,5 +74,37 @@ public class LinkedBinaryTreeSpec<E> {
         assertArrayEquals(expectedPreorder, traversalPattern, () -> "Wrong preorder traversal pattern");
     }
 
-    
+    @Test
+    public void shouldReturnTreeInOrderTraversal() {
+        Character[] letters = {'A', 'B', 'C','D','E','F','G'};
+        Character[] expectedPreorder = {'D', 'B', 'E', 'A', 'F', 'C', 'G'};
+
+        BinaryTree<Character> binaryTree = BinaryTreeUtils.createBinaryTree(letters);
+
+        Iterable<Position<Character>> positions = binaryTree.inOrderPositions();
+        List<Position<Character>> target = new ArrayList<>();
+        positions.forEach(target::add);
+        Character[] traversalPattern = new Character[target.size()];
+        traversalPattern = target.stream().map((p) -> p.getElement()).collect(Collectors.toList()).toArray(traversalPattern);
+
+        assertEquals(expectedPreorder.length, traversalPattern.length);
+        assertArrayEquals(expectedPreorder, traversalPattern, () -> "Wrong inorder traversal pattern");
+    }
+
+    @Test
+    public void shouldReturnTreePostOrderTraversal() {
+        Character[] letters = {'A', 'B', 'C','D','E','F','G'};
+        Character[] expectedPostOrder = {'D', 'E', 'B', 'F', 'G', 'C', 'A'};
+
+        BinaryTree<Character> binaryTree = BinaryTreeUtils.createBinaryTree(letters);
+
+        Iterable<Position<Character>> positions = binaryTree.postOrderPositions();
+        List<Position<Character>> target = new ArrayList<>();
+        positions.forEach(target::add);
+        Character[] traversalPattern = new Character[target.size()];
+        traversalPattern = target.stream().map((p) -> p.getElement()).collect(Collectors.toList()).toArray(traversalPattern);
+
+        assertEquals(expectedPostOrder.length, traversalPattern.length);
+        assertArrayEquals(expectedPostOrder, traversalPattern, () -> "Wrong post-order traversal pattern");
+    }
 }
