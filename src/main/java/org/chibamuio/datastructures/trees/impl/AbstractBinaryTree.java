@@ -2,6 +2,7 @@ package org.chibamuio.datastructures.trees.impl;
 
 import org.chibamuio.datastructures.trees.BinaryTree;
 import org.chibamuio.datastructures.core.Position;
+import org.chibamuio.datastructures.trees.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,5 +98,12 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
         for(Position<E> childPosition: children(p))
             postOrderSubtree(childPosition, snapShot);
         snapShot.add(p);
+    }
+
+    @Override
+    public void printPreorderLabeled(Tree<E> T, Position<E> p, ArrayList<Integer> path) {
+
+        int d = path.size();
+        
     }
 }

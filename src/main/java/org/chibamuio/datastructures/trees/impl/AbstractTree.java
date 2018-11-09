@@ -33,7 +33,8 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     }
 
-    public int depthIterative(final Position<E> p) {
+    @Override
+    public int depth(final Position<E> p) {
         Position<E> pos = null;
         int height = 0;
         if(isRoot(p))

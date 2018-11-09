@@ -107,4 +107,31 @@ public class LinkedBinaryTreeSpec<E> {
         assertEquals(expectedPostOrder.length, traversalPattern.length);
         assertArrayEquals(expectedPostOrder, traversalPattern, () -> "Wrong post-order traversal pattern");
     }
+
+
+    @Test
+    public void shouldReturnHieghtOfNode() {
+       Character[] letters =
+               {'B', 'Z', 'X','K','I',null,null,
+                       'N', 'J', 'M', null, null, null, null, null, 'B', 'A','C', 'E'};
+
+
+        BinaryTree<Character> binaryTree = BinaryTreeUtils.createBinaryTree(letters);
+        Position<Character> root = binaryTree.root();
+        Position<Character> z = binaryTree.left(root);
+        Position<Character> x = binaryTree.right(root);
+        int rootHeight = binaryTree.height(root);
+        System.out.println(rootHeight);
+        int zDepth = binaryTree.depth(z);
+        int xDepth = binaryTree.depth(x);
+
+        assertEquals(1, zDepth);
+        assertEquals(1, xDepth);
+
+        Position<Character> k = binaryTree.left(z);
+        Position<Character> i = binaryTree.right(z);
+
+        assertEquals(2, binaryTree.depth(k));
+        assertEquals(3, binaryTree.height(k));
+    }
 }

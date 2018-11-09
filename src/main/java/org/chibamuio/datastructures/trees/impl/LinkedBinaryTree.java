@@ -8,6 +8,7 @@ import org.chibamuio.datastructures.core.Position;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
@@ -77,6 +78,14 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
     @Override
     public Position<E> sibling(Position<E> p) throws IllegalArgumentException {
+        Node<E> node = validate(p);
+        Node<E> parent = node.getParent();
+        if(parent.getLeft() == node){
+            return parent.getRight();
+        }
+        if(parent.getRight() == node){
+            return parent.getLeft();
+        }
         return null;
     }
 
@@ -103,6 +112,5 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     public Iterator<E> iterator() {
         return null;
     }
-
 
 }

@@ -2,6 +2,7 @@ package org.chibamuio.datastructures.trees;
 
 import org.chibamuio.datastructures.core.Position;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public interface Tree<E> extends Iterable<E> {
@@ -19,4 +20,8 @@ public interface Tree<E> extends Iterable<E> {
     Iterable<Position<E>> preOrderPositions();
     Iterable<Position<E>> inOrderPositions();
     Iterable<Position<E>> postOrderPositions();
+    void printPreorderLabeled(Tree<E> T, Position<E> p, ArrayList<Integer> path);
+    int height(Position<E> p) throws IllegalArgumentException;
+    int depth(Position<E> p) throws IllegalArgumentException;
+
 }
