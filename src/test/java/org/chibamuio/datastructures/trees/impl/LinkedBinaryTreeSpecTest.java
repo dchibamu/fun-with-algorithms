@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("<=== LinkedBanaryTreeSpecification===>")
-public class LinkedBinaryTreeSpec<E> {
+public class LinkedBinaryTreeSpecTest<E> {
 
     @Test
     public void treeShouldAgreeWithStructureSpec() {
@@ -122,16 +122,9 @@ public class LinkedBinaryTreeSpec<E> {
         Position<Character> x = binaryTree.right(root);
         int rootHeight = binaryTree.height(root);
         System.out.println(rootHeight);
-        int zDepth = binaryTree.depth(z);
-        int xDepth = binaryTree.depth(x);
+        //int zDepth = binaryTree.depth(z);
+        //int xDepth = binaryTree.depth(x);
 
-        assertEquals(1, zDepth);
-        assertEquals(1, xDepth);
-
-        Position<Character> k = binaryTree.left(z);
-        Position<Character> i = binaryTree.right(z);
-
-        assertEquals(2, binaryTree.depth(k));
-        assertEquals(3, binaryTree.height(k));
+        assertEquals(4, rootHeight);
     }
 }

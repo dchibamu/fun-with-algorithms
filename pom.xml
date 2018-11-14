@@ -5,6 +5,7 @@
     <artifactId>algorithms-datastructures</artifactId>
     <version>0.1</version>
     <name>Trees In Junit 5</name>
+    <packaging>jar</packaging>
     <description>Fundamental Data Structures</description>
 
     <properties>
@@ -37,7 +38,7 @@
             test, it's not bundled with the correct JUnit 5 version. You can
             solve this problem by uncommenting the following dependencies.
         -->
-        <!--
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -62,7 +63,7 @@
             <version>${junit.platform.version}</version>
             <scope>test</scope>
         </dependency>
-        -->
+
     </dependencies>
     <build>
         <finalName>algorithms-datastructures-${project.version}</finalName>

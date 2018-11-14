@@ -43,7 +43,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
             do {
                 height++;
                 pos = parent(p);
-            }while(pos != root());
+            }while(pos != p);
         return height;
     }
 
