@@ -127,4 +127,10 @@ public class LinkedBinaryTreeSpecTest<E> {
 
         assertEquals(4, rootHeight);
     }
+
+    @Test
+    public void shouldIterativelyCalculateHeight() {
+
+        Character[] letters = {};
+    }
 }

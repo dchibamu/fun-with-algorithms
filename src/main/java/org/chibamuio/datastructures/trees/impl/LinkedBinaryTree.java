@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.chibamuio.datastructures.core.Position;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.StreamSupport;
 
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
@@ -111,6 +109,23 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     @Override
     public Iterator<E> iterator() {
         return null;
+    }
+
+    @Override
+    public int iterativeTreeHeight(){
+        int height = 0;
+
+        Stack<Position> workingStack = new Stack<>();
+        workingStack.push(root());
+
+        while(!workingStack.empty()){
+            Position<E> currentParent = workingStack.pop();
+            Iterable<Position<E>> children = children(currentParent);
+            if(!children.iterator().hasNext())
+                height = depth(currentParent);
+            StreamSupport.stream(children.spliterator(), false).forEach(p ->workingStack.push(p));
+        }
+        return height;
     }
 
 }

@@ -3,6 +3,8 @@ package org.chibamuio.datastructures.trees.impl;
 import org.chibamuio.datastructures.trees.Tree;
 import org.chibamuio.datastructures.core.Position;
 
+import java.util.Stack;
+
 public abstract class AbstractTree<E> implements Tree<E> {
 
     @Override
@@ -36,15 +38,15 @@ public abstract class AbstractTree<E> implements Tree<E> {
     @Override
     public int depth(final Position<E> p) {
         Position<E> pos = null;
-        int height = 0;
+        int depth = 0;
         if(isRoot(p))
             return 0;
         else
             do {
-                height++;
+                depth++;
                 pos = parent(p);
             }while(pos != p);
-        return height;
+        return depth;
     }
 
     public int height(Position<E> p){
@@ -55,4 +57,6 @@ public abstract class AbstractTree<E> implements Tree<E> {
         }
         return h;
     }
+
+
 }
