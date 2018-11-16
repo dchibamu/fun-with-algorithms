@@ -120,20 +120,19 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         workingStack.push(root);
         while(!workingStack.empty()){
             Position<E> currentParent = workingStack.pop();
-            Iterable<Position<E>> children = children(currentParent);
-            Iterator<Position<E>> iterator = children.iterator();
-            System.out.println(iterator);
-             if(!iterator.hasNext()) {
+            Iterator<Position<E>> children = StreamSupport.stream(children(currentParent).spliterator(), false).iterator();
+            if(!children.hasNext()) {
                 leafNodeHeight = 0;
-                Position<E> parentTrace = null;
-                do{
+                Position<E> parentTrace = currentParent;
+                while(parentTrace != root){
                     leafNodeHeight++;
-                    parentTrace = parent(currentParent);
-                }while(parentTrace != root);
+                    parentTrace = parent(parentTrace);
+                }
                 if(leafNodeHeight > height)
                     height = leafNodeHeight;
             }else {
-                 StreamSupport.stream(children.spliterator(), false).forEach(p -> workingStack.push(p));
+                 StreamSupport.stream(Spliterators.spliteratorUnknownSize(children, Spliterator.ORDERED), false)
+                         .forEach(workingStack::push);
              }
         }
         return height;
