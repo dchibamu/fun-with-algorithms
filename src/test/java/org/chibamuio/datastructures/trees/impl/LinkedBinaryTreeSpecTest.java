@@ -130,7 +130,7 @@ public class LinkedBinaryTreeSpecTest<E> {
 
     @Test
     public void shouldIterativelyCalculateHeight() {
+            
 
-        Character[] letters = {};
     }
 }
