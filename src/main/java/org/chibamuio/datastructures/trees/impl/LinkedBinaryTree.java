@@ -3,6 +3,7 @@ package org.chibamuio.datastructures.trees.impl;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.chibamuio.datastructures.core.Position;
 
 import java.util.*;
@@ -114,16 +115,26 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     @Override
     public int iterativeTreeHeight(){
         int height = 0;
-
+        int leafNodeHeight = 0;
         Stack<Position> workingStack = new Stack<>();
-        workingStack.push(root());
-
+        workingStack.push(root);
         while(!workingStack.empty()){
             Position<E> currentParent = workingStack.pop();
             Iterable<Position<E>> children = children(currentParent);
-            if(!children.iterator().hasNext())
-                height = depth(currentParent);
-            StreamSupport.stream(children.spliterator(), false).forEach(p ->workingStack.push(p));
+            Iterator<Position<E>> iterator = children.iterator();
+            System.out.println(iterator);
+             if(!iterator.hasNext()) {
+                leafNodeHeight = 0;
+                Position<E> parentTrace = null;
+                do{
+                    leafNodeHeight++;
+                    parentTrace = parent(currentParent);
+                }while(parentTrace != root);
+                if(leafNodeHeight > height)
+                    height = leafNodeHeight;
+            }else {
+                 StreamSupport.stream(children.spliterator(), false).forEach(p -> workingStack.push(p));
+             }
         }
         return height;
     }

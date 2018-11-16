@@ -1,6 +1,5 @@
 package org.chibamuio.datastructures.trees.impl;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.chibamuio.datastructures.core.Position;
 import org.chibamuio.datastructures.trees.BinaryTree;
 import org.chibamuio.datastructures.utils.BinaryTreeUtils;
@@ -8,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -114,23 +115,54 @@ public class LinkedBinaryTreeSpecTest<E> {
        Character[] letters =
                {'B', 'Z', 'X','K','I',null,null,
                        'N', 'J', 'M', null, null, null, null, null, 'B', 'A','C', 'E'};
-
-
         BinaryTree<Character> binaryTree = BinaryTreeUtils.createBinaryTree(letters);
         Position<Character> root = binaryTree.root();
-        Position<Character> z = binaryTree.left(root);
-        Position<Character> x = binaryTree.right(root);
-        int rootHeight = binaryTree.height(root);
-        System.out.println(rootHeight);
-        //int zDepth = binaryTree.depth(z);
-        //int xDepth = binaryTree.depth(x);
-
-        assertEquals(4, rootHeight);
+        assertEquals(4, binaryTree.height(root));
     }
 
     @Test
     public void shouldIterativelyCalculateHeight() {
-            
+        List<String> wordsTreeData = new ArrayList<>(Collections.nCopies(11, null));
+        wordsTreeData.set(0, "A");
+        wordsTreeData.set(1, "B");
+        wordsTreeData.set(2, "C");
+        wordsTreeData.set(3, "K");
+        wordsTreeData.set(4, "M");
+        wordsTreeData.set(5, null);
+        wordsTreeData.set(6, null);
+        wordsTreeData.set(7, "Q");
+        wordsTreeData.set(8, "P");
+        wordsTreeData.set(9, "J");
+        wordsTreeData.set(10, "H");
 
+        BinaryTree<String> binaryTree = BinaryTreeUtils.createBinaryTree(wordsTreeData);
+        int height = binaryTree.iterativeTreeHeight();
+        assertEquals(3, height, () -> "Wrong height of tree");
+    }
+
+    @Test
+    public void shouldReturnListOfChildren() {
+        List<String> wordsTreeData = new ArrayList<>(Collections.nCopies(11, null));
+        wordsTreeData.set(0, "A");
+        wordsTreeData.set(1, "B");
+        wordsTreeData.set(2, "C");
+        wordsTreeData.set(3, "K");
+        wordsTreeData.set(4, "M");
+        wordsTreeData.set(5, null);
+        wordsTreeData.set(6, null);
+        wordsTreeData.set(7, "Q");
+        wordsTreeData.set(8, "P");
+        wordsTreeData.set(9, "J");
+        wordsTreeData.set(10, "H");
+        BinaryTree<String> binaryTree = BinaryTreeUtils.createBinaryTree(wordsTreeData);
+        Position<String> root = binaryTree.root();
+
+        Iterable<Position<String>> children = binaryTree.children(root);
+        Iterator<Position<String>> iterator = children.iterator();
+
+        Position<String> left = iterator.next();
+        Position<String> right = iterator.next();
+        assertEquals("B", left.getElement(), () -> "B is not equal to "+left.getElement());
+        assertEquals("C", right.getElement(), () -> "C is not equal to "+right.getElement());
     }
 }

@@ -1,7 +1,7 @@
 package org.chibamuio.datastructures.trees.impl;
 
-import org.chibamuio.datastructures.trees.BinaryTree;
 import org.chibamuio.datastructures.core.Position;
+import org.chibamuio.datastructures.trees.BinaryTree;
 import org.chibamuio.datastructures.trees.Tree;
 
 import java.util.ArrayList;

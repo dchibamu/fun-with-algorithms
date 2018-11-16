@@ -19,18 +19,20 @@ public class BinaryTreeUtils<E> {
 
         LinkedBinaryTree<E> binaryTree = new LinkedBinaryTree<>();
         Position<E> root = binaryTree.addRoot(treeData.get(0));
-
+        buildTree(treeData, binaryTree, root, 0);
         return binaryTree;
     }
 
     private static <E> void buildTree(List<E> treeData, LinkedBinaryTree<E> binaryTree, Position<E> parent, int i){
+        int leftPos = 2 * i + 1;
+        int rightPos = 2 * i + 2;
 
-        if(2 * i + 1 < treeData.size()){
-            Position<E> leftChild = binaryTree.addLeft(parent, treeData.get(2 * i + 1));
-            buildTree(treeData, binaryTree, leftChild, 2 * i + 1);
+        if(leftPos < treeData.size()){
+            Position<E> leftChild = binaryTree.addLeft(parent, treeData.get(leftPos));
+            buildTree(treeData, binaryTree, leftChild, leftPos);
 
-            Position<E> rightChild = binaryTree.addRight(parent, treeData.get(2 * i + 2));
-            buildTree(treeData, binaryTree, rightChild, 2 * i + 2);
+            Position<E> rightChild = binaryTree.addRight(parent, treeData.get(rightPos));
+            buildTree(treeData, binaryTree, rightChild, rightPos);
         }
     }
 
@@ -38,11 +40,16 @@ public class BinaryTreeUtils<E> {
         if(2 * i + 1 < treeValues.length){
 
            Position<E> leftChild = binaryTree.addLeft(parent, treeValues[2 * i + 1]);
-            //System.out.println(leftChild.getElement());
             buildTree(treeValues, binaryTree, leftChild, 2 * i + 1);
 
             Position<E> rightChild = binaryTree.addRight(parent, treeValues[2 * i + 2]);
             buildTree(treeValues, binaryTree, rightChild, 2 * i + 2);
         }
+    }
+
+    public static List<String> generateTreeData(){
+
+
+        return null;
     }
 }

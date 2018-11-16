@@ -1,3 +1,6 @@
 target
-trees.iml
 .idea
+run
+*.iml
+*.iws
+*.ipr
