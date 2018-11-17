@@ -136,8 +136,11 @@ public class LinkedBinaryTreeSpecTest<E> {
         wordsTreeData.set(10, "H");
 
         BinaryTree<String> binaryTree = BinaryTreeUtils.createBinaryTree(wordsTreeData);
-        int height = binaryTree.iterativeTreeHeight();
+        int height = binaryTree.iterativeTreeHeight(binaryTree.root());
         assertEquals(3, height, () -> "Wrong height of tree");
+
+        assertEquals(2, binaryTree.iterativeTreeHeight(binaryTree.left(binaryTree.root())));
+        assertEquals(1, binaryTree.iterativeTreeHeight(binaryTree.right(binaryTree.root())));
     }
 
     @Test

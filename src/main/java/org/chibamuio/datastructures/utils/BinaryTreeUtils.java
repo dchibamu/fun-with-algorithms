@@ -36,6 +36,8 @@ public class BinaryTreeUtils<E> {
         }
     }
 
+
+
     private static <E> void buildTree(E[] treeValues, LinkedBinaryTree<E> binaryTree, Position<E> parent, int i){
         if(2 * i + 1 < treeValues.length){
 

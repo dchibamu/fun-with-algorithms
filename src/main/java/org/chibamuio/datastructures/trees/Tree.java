@@ -24,6 +24,6 @@ public interface Tree<E> extends Iterable<E> {
     int height(Position<E> p) throws IllegalArgumentException;
     int depth(Position<E> p) throws IllegalArgumentException;
 
-    int iterativeTreeHeight();
+    int iterativeTreeHeight(Position<E> p);
 
 }
