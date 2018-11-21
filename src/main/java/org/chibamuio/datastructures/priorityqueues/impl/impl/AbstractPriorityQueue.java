@@ -45,12 +45,12 @@ public abstract class AbstractPriorityQueue<K, V> implements PriorityQueue<K, V>
 
         @Override
         public K getKey() {
-            return null;
+            return k;
         }
 
         @Override
         public V getValue() {
-            return null;
+            return v;
         }
 
         protected void setKey(K k) {

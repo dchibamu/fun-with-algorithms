@@ -23,7 +23,5 @@ public interface Tree<E> extends Iterable<E> {
     void printPreorderLabeled(Tree<E> T, Position<E> p, ArrayList<Integer> path);
     int height(Position<E> p) throws IllegalArgumentException;
     int depth(Position<E> p) throws IllegalArgumentException;
-
     int iterativeTreeHeight(Position<E> p);
-
 }

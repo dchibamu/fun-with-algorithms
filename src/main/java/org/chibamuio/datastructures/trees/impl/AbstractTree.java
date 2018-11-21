@@ -3,7 +3,11 @@ package org.chibamuio.datastructures.trees.impl;
 import org.chibamuio.datastructures.trees.Tree;
 import org.chibamuio.datastructures.core.Position;
 
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import java.util.Stack;
+import java.util.stream.StreamSupport;
 
 public abstract class AbstractTree<E> implements Tree<E> {
 
@@ -56,6 +60,32 @@ public abstract class AbstractTree<E> implements Tree<E> {
             h = Math.max(h, 1 + height(position));
         }
         return h;
+    }
+
+    @Override
+    public int iterativeTreeHeight(Position<E> p){
+        int height = 0;
+        int leafNodeHeight = 0;
+        Stack<Position> workingStack = new Stack<>();
+        workingStack.push(p);
+        while(!workingStack.empty()){
+            Position<E> currentParent = workingStack.pop();
+            Iterator<Position<E>> children = StreamSupport.stream(children(currentParent).spliterator(), false).iterator();
+            if(!children.hasNext()) {
+                leafNodeHeight = 0;
+                Position<E> parentTrace = currentParent;
+                while(parentTrace != p){
+                    leafNodeHeight++;
+                    parentTrace = parent(parentTrace);
+                }
+                if(leafNodeHeight > height)
+                    height = leafNodeHeight;
+            }else {
+                StreamSupport.stream(Spliterators.spliteratorUnknownSize(children, Spliterator.ORDERED), false)
+                        .forEach(workingStack::push);
+            }
+        }
+        return height;
     }
 
 

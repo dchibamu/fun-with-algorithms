@@ -168,4 +168,25 @@ public class LinkedBinaryTreeSpecTest<E> {
         assertEquals("B", left.getElement(), () -> "B is not equal to "+left.getElement());
         assertEquals("C", right.getElement(), () -> "C is not equal to "+right.getElement());
     }
+
+    @Test
+    public void shouldReturnTrueIfTreeIsHeightBalanced(){
+        List<String> wordsTreeData = new ArrayList<>(Collections.nCopies(11, null));
+        wordsTreeData.set(0, "A");
+        wordsTreeData.set(1, "B");
+        wordsTreeData.set(2, "C");
+        wordsTreeData.set(3, "K");
+        wordsTreeData.set(4, "M");
+        wordsTreeData.set(5, null);
+        wordsTreeData.set(6, null);
+        wordsTreeData.set(7, "Q");
+        wordsTreeData.set(8, "P");
+        wordsTreeData.set(9, "J");
+        wordsTreeData.set(10, "H");
+        BinaryTree<String> binaryTree = BinaryTreeUtils.createBinaryTree(wordsTreeData);
+        Position<String> root = binaryTree.root();
+
+        boolean balanced = binaryTree.isBalanced(root);
+        assertTrue(balanced, () -> "Tree rooted at "+root.getElement()+" is not balanced");
+    }
 }

@@ -1,5 +1,6 @@
 package org.chibamuio.datastructures.trees.impl;
 
+import lombok.AllArgsConstructor;
 import org.chibamuio.datastructures.core.Position;
 import org.chibamuio.datastructures.trees.BinaryTree;
 import org.chibamuio.datastructures.trees.Tree;

@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.chibamuio.datastructures.core.Position;
 
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.Spliterators;
-import java.util.Stack;
+import java.util.*;
 import java.util.stream.StreamSupport;
 
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
@@ -91,6 +88,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
     private Node<E> validate(Position<E> p) throws IllegalArgumentException {
+
         if (!(p instanceof Node))
             throw new IllegalArgumentException("Invalid position");
         Node<E> node = (Node<E>) p;
@@ -115,28 +113,31 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
     @Override
-    public int iterativeTreeHeight(Position<E> p){
-        int height = 0;
-        int leafNodeHeight = 0;
-        Stack<Position> workingStack = new Stack<>();
-        workingStack.push(p);
-        while(!workingStack.empty()){
-            Position<E> currentParent = workingStack.pop();
-            Iterator<Position<E>> children = StreamSupport.stream(children(currentParent).spliterator(), false).iterator();
-            if(!children.hasNext()) {
-                leafNodeHeight = 0;
-                Position<E> parentTrace = currentParent;
-                while(parentTrace != p){
-                    leafNodeHeight++;
-                    parentTrace = parent(parentTrace);
-                }
-                if(leafNodeHeight > height)
-                    height = leafNodeHeight;
-            }else {
-                 StreamSupport.stream(Spliterators.spliteratorUnknownSize(children, Spliterator.ORDERED), false)
-                         .forEach(workingStack::push);
-             }
-        }
-        return height;
+    public Boolean isBalanced(Position<E> p) throws IllegalArgumentException {
+        int leftTreeHeight = 0, rightTreeHeight = 0;
+        boolean isLeftBalanced = true;
+        boolean isRightBalanced = true;
+
+        if(left(p) != null)
+            leftTreeHeight = height(left(p));
+        if(right(p) != null)
+            rightTreeHeight = height(right(p));
+
+        boolean heightBalanced = Math.abs(leftTreeHeight - rightTreeHeight) <= 1;
+        if(left(p) != null)
+            isLeftBalanced = isBalanced(left(p));
+        if(right(p) != null)
+            isRightBalanced = isBalanced(right(p));
+        return heightBalanced && isLeftBalanced && isRightBalanced;
+    }
+
+    @Override
+    public List<E> largestCompleteSubtree(Position<E> parentPersipective) throws IllegalArgumentException {
+        List<E> subTree = new ArrayList<>();
+
+        Position<E> currentPerspective = parentPersipective;
+
+
+        return subTree;
     }
 }
