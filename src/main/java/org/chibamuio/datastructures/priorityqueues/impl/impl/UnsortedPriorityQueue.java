@@ -5,6 +5,7 @@ import org.chibamuio.datastructures.priorityqueues.impl.Entry;
 public class UnsortedPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
 
 
+    private int size;
 
     @Override
     public int size() {
