@@ -5,7 +5,7 @@ import org.chibamuio.utils.Pair;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PuzzleTwoSumSolution {
+public class PuzzleSumSolution {
 
     /**
      * Finds two values that sum to target from the input array inputNumbers, otherwise returns null if not found

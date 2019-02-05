@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class PuzzleTwoSumSolutionTest {
+class PuzzleSumSolutionTest {
 
     @Test
     @DisplayName("Should find number 7 and 8 with target sum of 15")
@@ -16,7 +16,7 @@ class PuzzleTwoSumSolutionTest {
         int target = 15;
         int expectedFirst = 7;
         int expectedSecond = 8;
-        PuzzleTwoSumSolution sumSolution = new PuzzleTwoSumSolution();
+        PuzzleSumSolution sumSolution = new PuzzleSumSolution();
         Pair<Integer> output = sumSolution.sumTwo(inputNumbers, target);
         assertEquals(output.getFirst().intValue(), expectedFirst);
         assertEquals(output.getSecond().intValue(), expectedSecond);
@@ -27,7 +27,7 @@ class PuzzleTwoSumSolutionTest {
     void shouldReturnNullIfPassedEmptyInputArray(){
         int[] inputNumbers = null;
         int target = 15;
-        PuzzleTwoSumSolution sumSolution = new PuzzleTwoSumSolution();
+        PuzzleSumSolution sumSolution = new PuzzleSumSolution();
         Pair<Integer> output = sumSolution.sumTwo(inputNumbers, target);
         assertNull(output);
     }
