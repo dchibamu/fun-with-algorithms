@@ -28,4 +28,9 @@ public class PuzzleSumSolution {
         }
         return new Pair<Integer>(null, null);
     }
+
+    public int[] findTwoNumbersAddingToTarget(int[] numbers, int target){
+
+        return null;
+    }
 }

@@ -54,6 +54,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
 
     @Override
     public Position<E> addFirst(E e) {
+
         return addBetween(e, header, header.getNext());
     }
 
